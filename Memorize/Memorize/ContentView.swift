@@ -8,31 +8,71 @@
 import SwiftUI
 
 struct ContentView: View {
+    let emojis = ["🐲", "🐝", "🦅", "🐵", "🐮", "🦁", "🦊", "🐰", "🐶", "🐷", "🐭", "🐻"]
+    @State var cardCount = 4
+    
     var body: some View {
-        HStack(spacing: 10) {
-            ForEach(0..<5) { _ in
-                CardView(isFaceUp: true)
+        VStack {
+            ScrollView {
+                cards.padding(4)
+            }
+            Spacer()
+            cardCountAdjusters
+        }
+        .padding()
+    }
+    
+    var cards: some View {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))]) {
+            ForEach(0..<cardCount, id: \.self) { index in
+                CardView(content: emojis[index])
+                    .aspectRatio(2/3, contentMode: .fit)
             }
         }
         .foregroundColor(.orange)
-        .padding()
+    }
+    
+    var cardCountAdjusters: some View {
+        HStack {
+            cardCountAdjuster(by: -1, symbol: "rectangle.stack.badge.minus.fill")
+                .disabled(cardCount == 1)
+            Spacer()
+            cardCountAdjuster(by: +1, symbol: "rectangle.stack.badge.plus.fill")
+                .disabled(cardCount == emojis.count-1)
+        }
+        .imageScale(.large)
+        .font(.largeTitle)
+    }
+    
+    func cardCountAdjuster(by offset: Int, symbol: String) -> some View {
+        Button {
+            cardCount += offset
+        } label: {
+            Image(systemName: symbol)
+        }
     }
 }
 
 struct CardView: View {
-    var isFaceUp = false
+    let content: String
+    @State var isFaceUp = false
     
     var body: some View {
         ZStack {
-            if isFaceUp {
+            Group {
                 RoundedRectangle(cornerRadius: 12)
                     .foregroundColor(.white)
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(lineWidth: 4)
-                Text("🐣").font(.largeTitle)
-            } else {
-                RoundedRectangle(cornerRadius: 12)
+                Text(content).font(.largeTitle)
             }
+            .opacity(isFaceUp ? 1 : 0)
+            
+            RoundedRectangle(cornerRadius: 12)
+                .opacity(isFaceUp ? 0 : 1)
+        }
+        .onTapGesture {
+            isFaceUp.toggle()
         }
     }
 }
