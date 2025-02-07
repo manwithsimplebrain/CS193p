@@ -38,6 +38,10 @@ class ThemeManager: ObservableObject {
         activeTheme = theme
         emojis = randomPickEmojis()
     }
+    
+    var themeColor: Color {
+        activeTheme.color
+    }
 }
 
 extension ThemeManager {

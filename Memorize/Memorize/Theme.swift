@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum Theme {
     case animal
@@ -24,9 +25,17 @@ extension Theme {
     
     var symbol: String {
         switch self {
-        case .animal: return "questionmark.circle"
-        case .halloween: return "questionmark.circle"
+        case .animal: return "swift"
+        case .halloween: return "brain"
         case .transport: return "car"
+        }
+    }
+    
+    var color: Color {
+        switch self {
+        case .animal: return .blue
+        case .halloween: return .red
+        case .transport: return .orange
         }
     }
 }

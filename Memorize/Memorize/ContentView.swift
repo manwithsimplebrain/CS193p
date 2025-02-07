@@ -29,7 +29,7 @@ struct ContentView: View {
                     .aspectRatio(2/3, contentMode: .fit)
             }
         }
-        .foregroundColor(.orange)
+        .foregroundColor(themeManager.themeColor)
     }
     
     var themeChoosers: some View {
@@ -50,7 +50,7 @@ struct ContentView: View {
                 .imageScale(.large)
                 .font(.title2)
         }
-        .tint(theme == themeManager.activeTheme ? .blue : .gray)
+        .tint(theme.color)
     }
 }
 

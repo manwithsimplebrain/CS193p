@@ -3,6 +3,8 @@ Developing Apps for iOS course from Stanford university
 
 ## Assignment I
 
+### Required Tasks
+
 - [x] Get the Memorize game working as demonstrated in lectures 1 and 2. Type in all the
 code. **Do not copy/paste from anywhere**.
 
@@ -36,3 +38,10 @@ SF Symbol which evokes the idea of the theme it chooses
 than the font we chose for the emoji on the cards
 
 - [ ] Change the code so that cards appear face down by default rather than face up
+
+
+### Extra Fun Things To Do
+
+- [x] Associate a Color with each theme
+
+- [x] Make a random number of pairs of cards appear each time a theme button is chosen.
