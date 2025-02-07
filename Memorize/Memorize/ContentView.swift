@@ -23,7 +23,7 @@ struct ContentView: View {
     }
     
     var cards: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))]) {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 64))]) {
             ForEach(0..<themeManager.cardCount, id: \.self) { index in
                 CardView(content: themeManager.emojis[index])
                     .aspectRatio(2/3, contentMode: .fit)

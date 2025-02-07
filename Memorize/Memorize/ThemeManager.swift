@@ -23,10 +23,12 @@ class ThemeManager: ObservableObject {
     
     init() {
         let defaultTheme = Theme.animal
+        let adjustCount = data[defaultTheme]!.count > limitCardCount ? limitCardCount : data[defaultTheme]!.count
+        let sliceEmojis = Array(data[defaultTheme]![0..<adjustCount/2])
         self.activeTheme = defaultTheme
-        emojis = data[defaultTheme]!
+        emojis = (sliceEmojis+sliceEmojis).shuffled()
         allThemes = Array(data.keys)
-        cardCount = data[defaultTheme]!.count > limitCardCount ? limitCardCount : data[defaultTheme]!.count
+        cardCount = adjustCount
     }
     
     func changeTheme(to theme: Theme) {
@@ -34,6 +36,14 @@ class ThemeManager: ObservableObject {
             return
         }
         activeTheme = theme
-        emojis = data[activeTheme]!
+        emojis = randomPickEmojis()
+    }
+}
+
+extension ThemeManager {
+    private func randomPickEmojis() -> [String] {
+        let randomEmojis = data[activeTheme]!.shuffled()
+        let sliceEmojis = Array(randomEmojis[0..<cardCount/2])
+        return (sliceEmojis+sliceEmojis).shuffled()
     }
 }
