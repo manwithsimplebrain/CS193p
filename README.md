@@ -9,7 +9,7 @@ code. **Do not copy/paste from anywhere**.
 - [ ] After doing so, you can feel free to remove the ⊖ and ⊕ buttons at the bottom of the
 screen (or not, your choice) and all of the code that supports it.
 
-- [ ] Add a title "Memorize!" to the top of the screen. It’s a title, so it should be in a large
+- [x] Add a title "Memorize!" to the top of the screen. It’s a title, so it should be in a large
 font.
 
 - [ ] Add at least 3 "theme choosing" buttons to your UI, each of which causes all of the
