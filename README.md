@@ -47,3 +47,9 @@ than the font we chose for the emoji on the cards
 - [x] Make a random number of pairs of cards appear each time a theme button is chosen.
 
 - [ ] Try to come up with some sort of equation that relates the number of cards in the game to the width you pass when you create your LazyVGrid’s `GridItem(.adaptive(minimum:maximum:))` such that each time a theme button is chosen, the LazyVGrid makes the cards as big as possible without having to scroll.
+
+
+## Reading Assignment
+
+- [ ] A Swift Tour
+
