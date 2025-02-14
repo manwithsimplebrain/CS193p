@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  EmojiMemoryGameView.swift
 //  Memorize
 //
 //  Created by Dat on 06/02/2025.
@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct EmojiMemoryGameView: View {
+    @ObservedObject var viewModel: EmojiMemoryGame
     @EnvironmentObject private var themeManager: ThemeManager
     
     var body: some View {
@@ -17,16 +18,19 @@ struct ContentView: View {
                 cards.padding(4)
             }
             Spacer()
+            Button("Shuffle", action: viewModel.shuffle)
+            .padding()
             themeChoosers
         }
         .padding()
     }
     
     var cards: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 64))]) {
-            ForEach(0..<themeManager.cardCount, id: \.self) { index in
-                CardView(content: themeManager.emojis[index])
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 64), spacing: 0)], spacing: 0) {
+            ForEach(viewModel.cards.indices, id: \.self) { index in
+                CardView(card: viewModel.cards[index])
                     .aspectRatio(2/3, contentMode: .fit)
+                    .padding(4)
             }
         }
         .foregroundColor(themeManager.themeColor)
@@ -54,9 +58,9 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct EmojiMemoryGameView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        EmojiMemoryGameView(viewModel: EmojiMemoryGame())
             .environmentObject(ThemeManager())
     }
 }
